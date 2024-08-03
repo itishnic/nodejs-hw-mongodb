@@ -18,11 +18,7 @@ const contactsSchema = new Schema(
       type: Boolean,
       required: true,
     },
-    onDuty: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
+    
     contactType: {
       type: String,
       enum: ["work", "home", "personal"],
