@@ -9,7 +9,7 @@ import { env } from "./utils/env.js";
 
 import contactsRouter from "./routers/contacts.js";
 
-// Імпортуємо middleware
+
 import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 
