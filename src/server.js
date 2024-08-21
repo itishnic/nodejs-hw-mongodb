@@ -5,9 +5,9 @@ import pino from "pino-http";
 import cors from "cors";
 import { env } from "./utils/env.js";
 
+import router from './routers/index.js';
 
-
-import contactsRouter from "./routers/contacts.js";
+// import contactsRouter from "./routers/contacts.js";
 
 
 import { errorHandler } from './middlewares/errorHandler.js';
@@ -44,8 +44,8 @@ export const startServer = () => {
     });
   });
 
-  app.use(contactsRouter);
-
+  // app.use(contactsRouter);
+  app.use(router);
 
   app.use("*", notFoundHandler);
 
