@@ -7,7 +7,7 @@ import { env } from "./utils/env.js";
 
 import router from './routers/index.js';
 
-// import contactsRouter from "./routers/contacts.js";
+import cookieParser from 'cookie-parser';
 
 
 import { errorHandler } from './middlewares/errorHandler.js';
@@ -29,7 +29,7 @@ export const startServer = () => {
     })
   );
   app.use(cors());
-
+  app.use(cookieParser());
   app.use(
     pino({
       transport: {
