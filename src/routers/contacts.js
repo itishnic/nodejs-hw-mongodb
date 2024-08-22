@@ -3,7 +3,7 @@ const router = Router();
 
 import { validateBody } from "../middlewares/validateBody.js";
 import { createContactsSchema,updateContactSchema } from "../validation/contacts.js";
-
+import { authenticate } from '../middlewares/authenticate.js';
 
 import { isValidId } from "../middlewares/isValidId.js";
 
@@ -19,10 +19,10 @@ import { ctrlWrapper } from "../utils/ctrlWrapper.js";
 
 
 
-
+router.use(authenticate);
 
 router.get(
-  "/contacts",
+  "/",
   ctrlWrapper(getContactsController, )
 );
 router.get(
