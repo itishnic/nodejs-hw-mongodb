@@ -1,17 +1,14 @@
-import { Router } from "express";
+import { Router } from 'express';
 const router = Router();
 
-import { validateBody } from "../middlewares/validateBody.js";
+import { validateBody } from '../middlewares/validateBody.js';
 import {
   createContactsSchema,
   updateContactSchema,
-} from "../validation/contacts.js";
-import { authenticate } from "../middlewares/authenticate.js";
+} from '../validation/contacts.js';
+import { authenticate } from '../middlewares/authenticate.js';
 
-import { isValidId } from "../middlewares/isValidId.js";
-
-import { checkRoles } from "../middlewares/checkRoles.js";
-import { ROLES } from "../constants/index.js";
+import { isValidId } from '../middlewares/isValidId.js';
 
 import {
   getContactsController,
@@ -19,47 +16,47 @@ import {
   createContactController,
   deleteContactController,
   patchContactController,
-} from "../controllers/contacts.js";
-import { ctrlWrapper } from "../utils/ctrlWrapper.js";
+} from '../controllers/contacts.js';
+import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 
 router.use(authenticate);
 
 router.get(
-  "/contacts",
-  checkRoles(ROLES.TEACHER),
-  ctrlWrapper(getContactsController)
+  '/contacts',
+
+  ctrlWrapper(getContactsController),
 );
 router.get(
-  "/contacts/:contactId",
-  checkRoles(ROLES.TEACHER, ROLES.PARENT),
+  '/contacts/:contactId',
+
   isValidId,
-  ctrlWrapper(getContactByIdController)
+  ctrlWrapper(getContactByIdController),
 );
 
 router.post(
-  "/register",
+  '/register',
   validateBody(createContactsSchema),
-  ctrlWrapper(createContactController)
+  ctrlWrapper(createContactController),
 );
 
 router.post(
-  "/contacts",
-  checkRoles(ROLES.TEACHER),
+  '/contacts',
+
   validateBody(createContactsSchema),
-  ctrlWrapper(createContactController)
+  ctrlWrapper(createContactController),
 );
 router.patch(
-  "/contacts/:contactId",
-  checkRoles(ROLES.TEACHER, ROLES.PARENT),
+  '/contacts/:contactId',
+
   isValidId,
   validateBody(updateContactSchema),
-  ctrlWrapper(patchContactController)
+  ctrlWrapper(patchContactController),
 );
 router.delete(
-  "/contacts/:contactId",
-  checkRoles(ROLES.TEACHER),
+  '/contacts/:contactId',
+
   isValidId,
-  ctrlWrapper(deleteContactController)
+  ctrlWrapper(deleteContactController),
 );
 
 export default router;
