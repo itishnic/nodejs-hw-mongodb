@@ -22,7 +22,7 @@ import { ctrlWrapper } from "../utils/ctrlWrapper.js";
 router.use(authenticate);
 
 router.get(
-  "/",
+  "/contacts",
   ctrlWrapper(getContactsController, )
 );
 router.get(
