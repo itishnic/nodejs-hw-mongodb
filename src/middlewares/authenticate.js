@@ -41,6 +41,6 @@ export const authenticate = async (req, res, next) => {
   }
 
   req.user = user;
-
+  console.log("Authenticated user:", token);
   next();
 };
