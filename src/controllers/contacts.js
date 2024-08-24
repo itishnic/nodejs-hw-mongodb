@@ -21,7 +21,7 @@ export const getContactsController = async (req, res) => {
     sortOrder,
     userId,
   });
-
+  console.log("Found contacts:", contacts);
   res.json({
     status: 200,
     message: 'Successfully found contacts!',
@@ -54,6 +54,7 @@ export const createContactController = async (req, res, next) => {
 
   try {
       const contact = await createContact({ name, phoneNumber, email, isFavourite, contactType, userId });
+      console.log("Creating contact with data:", contact);
       res.status(201).json({
           status: 201,
           message: 'Successfully created a contact!',
