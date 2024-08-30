@@ -47,12 +47,17 @@ export const getContactByIdController = async (req, res, next) => {
 };
 
 export const createContactController = async (req, res, next) => {
-  const { name, phoneNumber, email, isFavourite, contactType, photo } =
-    req.body;
+  const { name, phoneNumber, email, isFavourite, contactType } = req.body;
   const userId = req.user._id;
+  const photo = req.file;
 
   if (!name || !phoneNumber || !contactType) {
     return next(createHttpError(400, 'Missing required fields'));
+  }
+  let photoUrl;
+
+  if (photo) {
+    photoUrl = await saveFileToUploadDir(photo);
   }
 
   try {
@@ -63,7 +68,7 @@ export const createContactController = async (req, res, next) => {
       isFavourite,
       contactType,
       userId,
-      photo,
+      photo: photoUrl,
     });
     console.log('Creating contact with data:', contact);
     res.status(201).json({
@@ -92,7 +97,7 @@ export const deleteContactController = async (req, res, next) => {
 
 export const patchContactController = async (req, res, next) => {
   const { contactId } = req.params;
-  const userId = req.user._id;
+  // const userId = req.user._id;
   const photo = req.file;
 
   let photoUrl;
@@ -101,7 +106,10 @@ export const patchContactController = async (req, res, next) => {
     photoUrl = await saveFileToUploadDir(photo);
   }
 
-  const result = await updateContact(contactId, req.body, userId, photoUrl);
+  const result = await updateContact(contactId, {
+    ...req.body,
+    photo: photoUrl,
+  });
 
   if (!result) {
     next(createHttpError(404, 'Contact not found'));
