@@ -14,10 +14,10 @@ tags:
 servers:
   - url: http://127.0.0.1:8080
   - url: https://nodejs-hw-mongodb-22-tmcv.onrender.com
-# paths:
-#   /contacts/{id}:
-#     get:
-#       $ref: ../swagger/paths/contacts/{id}/get.yaml
+paths:
+  /contacts/{id}:
+    get:
+      $ref: ../swagger/paths/contacts/{id}/get.yaml
 
 components:
   securitySchemes:
