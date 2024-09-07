@@ -11,10 +11,10 @@
   },
   "servers": [
     {
-      "url": "http://127.0.0.1:3000"
+      "url": "https://localhost:3000"
     },
     {
-      "url": "https://nodejs-hw-mongodb-gff6.onrender.com"
+      "url": "https://nodejs-hw-mongodb-4-8q2o.onrender.com"
     }
   ],
   "tags": [
@@ -233,9 +233,9 @@
                     "example": "home"
                   },
                   "photo": {
-                    "description": "Link to contact's photo",
                     "type": "string",
-                    "example": "https://res.cloudinary.com/uqwgdu/image/upload/image.png"
+                    "format": "binary",
+                    "description": "Contact photo (as a file)"
                   }
                 }
               }
@@ -271,6 +271,9 @@
                 }
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
           },
           "401": {
             "$ref": "#/components/responses/401"
