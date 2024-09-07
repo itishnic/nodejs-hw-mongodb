@@ -40,10 +40,9 @@ requestBody:
             enum: ['work', 'home', 'personal']
             example: home
           photo:
-            description: "Link to contact's photo"
             type: string
-            example: https://res.cloudinary.com/uqwgdu/image/upload/image.png
-
+            format: binary
+            description: Contact photo (as a file)
 responses:
   '201':
     description: Creates a contact
@@ -65,5 +64,7 @@ responses:
             data:
               type: object
               $ref: '../../components/schemas/contact.yaml'
+  '400':
+    $ref: ../../components/responses/400.yaml
   '401':
     $ref: '../../components/responses/401.yaml'
